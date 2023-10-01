@@ -412,6 +412,10 @@ conditional_layers {
 #define SHIFT_MORPH(NAME, LOWER, UPPER) \
     MOD_MORPH(NAME, LOWER, UPPER, MOD_LSFT|MOD_RSFT)
 
+/* Mod-Morph that sends another key when Right Shift is held */
+#define RIGHT_SHIFT_MORPH(NAME, LOWER, UPPER) \
+    MOD_MORPH(NAME, LOWER, UPPER, MOD_RSFT)
+
 /* Wrap ZMK_MACRO to avoid needing to specify Macro node */
 #define ZMKMACRO(NAME, ...) \
     macros { \
@@ -659,7 +663,7 @@ AUTOSHIFT(as, &kp, &kp)  /* Main Autoshift behavior */
 
 /* Autoshifting Mod-Morph behavior that sends another key when Shift is held */
 #define AUTOSHIFT_MORPH(NAME, LOWER, UPPER) \
-    SHIFT_MORPH(NAME, &as UPPER LOWER, &kp UPPER)
+    RIGHT_SHIFT_MORPH(NAME, &as UPPER LOWER, &kp UPPER)
 
 /* Numbers layer custom number and symbol pairs with Autoshift */
 AUTOSHIFT_MORPH(as_bslh_caret, BSLH, CARET)
@@ -921,7 +925,7 @@ DOUBLE_TAP(confirm_pc, &tog PC)  /* Toggle Mac/PC mode */
   &none           &none        &none        &none         &none          &none                                                                              &none                 &none     &none     &none      &none   &none
   &none  &as_bslh_caret  &as_n7_lbkt  &as_n8_rbkt   &as_n9_star  &as_fslh_amps                                                                              &none  &sk RC(RS(RA(RGUI)))     &none     &none      &none   &none
   &none  &as_colon_excl  &as_n4_lpar  &as_n5_rpar  &as_n6_equal  &as_hash_pipe                                                                   &tog NUMBERS_TOG             &sk RSHFT  &sk RGUI  &sk RALT  &sk RCTRL   &none
-  &none    &as_at_prcnt  &as_n1_lbrc  &as_n2_rbrc   &as_n3_dllr      &as_lt_gt  &as_minus_plus            &none   &none   &none   &none  &trans             &none                 &none     &none     &none      &none   &none
+  &none    &as_at_prcnt  &as_n1_lbrc  &as_n2_rbrc   &as_n3_dllr      &as_lt_gt  &as_minus_plus            &none   &none   &none   &none  &trans             &none             &sk LSHFT     &none     &none      &none   &none
  &trans           &none        &none        &none         &none                   &as_n0_under  &as_grave_tilde   &none   &none  &trans  &trans                                   &none     &none     &none      &none   &none
             >;
         };
@@ -932,7 +936,7 @@ DOUBLE_TAP(confirm_pc, &tog PC)  /* Toggle Mac/PC mode */
   &none   &none   &none   &none   &none   &none                                                   &none   &none      &none   &none     &none   &none
   &none  &trans  &trans  &trans  &trans  &trans                                                   &none  &trans      &none   &none     &none   &none
   &none  &trans  &trans  &trans  &trans  &trans                                                  &trans  &trans  &sk RCTRL  &trans  &sk RGUI   &none
-  &none  &trans  &trans  &trans  &trans  &trans  &trans   &none   &none   &none   &none  &trans   &none   &none      &none   &none     &none   &none
+  &none  &trans  &trans  &trans  &trans  &trans  &trans   &none   &none   &none   &none  &trans   &none  &trans      &none   &none     &none   &none
  &trans   &none   &none   &none   &none          &trans  &trans   &none   &none  &trans  &trans           &none      &none   &none     &none   &none
             >;
         };
